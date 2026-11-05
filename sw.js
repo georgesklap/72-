@@ -1,22 +1,7 @@
-// Scoped to /72-/; never caches other GitHub Pages projects.
-const CACHE = '72-ores-offline-v1';
-const ROOT = new URL('./', self.location.href);
-const APP = new URL('index.html', ROOT).href;
-const FILES = [APP, new URL('manifest.webmanifest',ROOT).href, new URL('icon-192.png',ROOT).href, new URL('icon-512.png',ROOT).href];
-self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)).then(() => self.skipWaiting()));
-});
-self.addEventListener('activate', event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('72-ores-offline-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
-});
-self.addEventListener('fetch', event => {
-  const req = event.request;
-  if (req.method !== 'GET') return;
-  const url = new URL(req.url);
-  if (url.origin !== self.location.origin || !url.pathname.startsWith(ROOT.pathname)) return;
-  if (req.mode === 'navigate') {
-    event.respondWith(fetch(req).then(response => { if(response.ok) {const copy=response.clone(); caches.open(CACHE).then(cache=>cache.put(APP,copy));}return response;}).catch(()=>caches.match(APP)));
-    return;
-  }
-  event.respondWith(caches.match(req).then(cached => cached || fetch(req)));
-});
+/* 72 Ώρες — offline cache */
+const CACHE = '72-ores-local-1.2';
+const ASSETS = ['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png'];
+self.addEventListener('install', event => {event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting()));});
+self.addEventListener('activate', event => {event.waitUntil(Promise.all([caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('72-ores-') && key !== CACHE).map(key => caches.delete(key)))),self.clients.claim()]));});
+self.addEventListener('fetch', event => {if (event.request.method !== 'GET') return;const url=new URL(event.request.url);if (url.origin !== self.location.origin || !url.pathname.startsWith(new URL(self.registration.scope).pathname)) return;event.respondWith(fetch(event.request).then(response => {if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache => cache.put(event.request,copy));}return response;}).catch(() => caches.match(event.request).then(cached => cached || (event.request.mode==='navigate' ? caches.match('./index.html') : Response.error()))));});
+self.addEventListener('message', event => {if(event.data && (event.data.type==='status' || event.data.type==='GET_STATUS' || event.data.type==='STATUS')) {const port=event.ports && event.ports[0];if(port) port.postMessage({ready:true,offline:true,cache:CACHE,version:'local-1.2'});}});
