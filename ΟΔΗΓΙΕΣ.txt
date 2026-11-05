@@ -1,0 +1,12 @@
+72 ΩΡΕΣ — ΑΡΧΕΙΑ PWA
+
+Ανέβασε τα 5 αρχεία (manifest.webmanifest, sw.js, pwa-register.js, icon-192.png, icon-512.png) στον ίδιο φάκελο με το υπάρχον index.html του repository georgesklap/72-.
+
+Στο υπάρχον index.html, ακριβώς ΠΡΙΝ από το τελευταίο </body>, πρόσθεσε:
+<script src="./pwa-register.js" defer></script>
+
+ΜΗΝ αντικαταστήσεις το index.html με κάποιο αρχείο από αυτό το ZIP: το ZIP δεν περιέχει τον υπάρχοντα κώδικα και τις 66 κάρτες.
+
+Μετά το GitHub Pages deployment, άνοιξε το URL στο Chrome με Internet, ανανέωσε τη σελίδα, και έλεγξε τη λειτουργία offline σε λειτουργία πτήσης. Η πλήρης λειτουργία δεν έχει ελεγχθεί σε πραγματικό Android.
+
+Αν το Chrome επιμένει «ήδη εγκατεστημένη», ελέγχουμε πρώτα τις εγκατεστημένες εφαρμογές και το manifest ID χωρίς να αφαιρέσουμε την Υ.Ε.Φ.Κ.Κ.
