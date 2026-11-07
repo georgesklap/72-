@@ -13,3 +13,5 @@
 12. protes-voitheies/anafylaxia — Εξάνθημα σε όλο το σώμα, ζάλη, λιποθυμία.
 13. nero/katharismos — Φορητά φίλτρα: αφαιρούν βακτήρια και παράσιτα, αλλά συνήθως όχι ι
 Τεχνικά: σωστός υπολογισμός 0 ενηλίκων, manifest, service worker.
+
+Έκδοση local-1.3-ios: υποστήριξη εγκατάστασης iPhone μέσω Safari, Apple touch icon, standalone meta, ανανέωση offline cache.

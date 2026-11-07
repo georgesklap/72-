@@ -1,4 +1,4 @@
-<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>72 Ώρες</title><link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#c2410c"><style>/* 72 Ώρες – Οδηγός Ετοιμότητας & Επιβίωσης
+<!doctype html><html lang="el"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>72 Ώρες</title><link rel="manifest" href="./manifest.webmanifest"><meta name="theme-color" content="#c2410c"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="72 Ώρες"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"><style>/* 72 Ώρες – Οδηγός Ετοιμότητας & Επιβίωσης
  * Φωτεινό θέμα υψηλής αντίθεσης, σκοτεινό θέμα για οικονομία μπαταρίας.
  * Σημείωση: δεν χρησιμοποιούμε text-transform: uppercase (τα ελληνικά κεφαλαία γράφονται χωρίς τόνους, χειροκίνητα).
  */
@@ -1689,7 +1689,7 @@ details.sg-kit-cat:not([open]) > summary::after { transform: rotate(0deg); }
 				'<svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3M10 18h4"/></svg>' +
 			'</span><div><h2>Βάλε τον οδηγό στην αρχική οθόνη</h2><p>Ένα εικονίδιο σαν εφαρμογή. Ανοίγει με ένα πάτημα, ακόμη και χωρίς internet.</p></div></div>' +
 			'<div class="sg-install-actions' + (secondary ? ' sg-two' : '') + '">' +
-				'<button class="sg-btn sg-btn-primary" type="button" data-act="install">Προσθήκη</button>' + secondary +
+				'<button class="sg-btn sg-btn-primary" type="button" data-act="install">' + (isIOS() ? 'Εγκατάσταση σε iPhone' : 'Προσθήκη') + '</button>' + secondary +
 			'</div></section>';
 	}
 
@@ -1784,7 +1784,7 @@ details.sg-kit-cat:not([open]) > summary::after { transform: rotate(0deg); }
 			['Κύλησε λίγο κάτω και πάτα <strong>Προσθήκη στην οθόνη Αφετηρίας</strong> ' + IOS_ICO.add + '.', iosFigSheet()],
 			['Πάτα <strong>Προσθήκη</strong> πάνω δεξιά.', iosFigAdd()]
 		];
-		return '<h2>Προσθήκη στην αρχική οθόνη</h2>' +
+		return '<h2>Εγκατάσταση σε iPhone</h2><p>Το iPhone δεν επιτρέπει αυτόματη εγκατάσταση από κουμπί. Ακολούθησε τα βήματα στο Safari:</p>' +
 			'<ol class="sg-steps sg-ios-steps">' + steps.map(function (st) { return '<li><p>' + st[0] + '</p>' + st[1] + '</li>'; }).join('') + '</ol>' +
 			'<p class="sg-muted sg-small">' + (v26
 				? 'Αν βλέπεις ήδη το ' + IOS_ICO.share + ' στη μπάρα, πάτα το κατευθείαν και συνέχισε από το βήμα 3.'
